@@ -18,4 +18,4 @@ Things you may want to cover:
 * Development Server
   User ./bin/dev command to run the server for local development. 
 
-* In this project most of the task's requirement are completed within a 8 hours.
+In this project most of the task's requirement are completed within 8 hours.
