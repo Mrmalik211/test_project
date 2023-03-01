@@ -1,0 +1,33 @@
+<%= form_with model: @user, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' }, url: add_employments_path do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if params[:id].present? %>
+    <%= form.hidden_field :user_id, value: params[:id] %>
+  <% end %>
+
+  <h4>Employment</h4>
+  <template data-nested-form-target="template">
+    <%= form.fields_for :employments, Employment.new, child_index: 'NEW_RECORD' do |emp_fields| %>
+      <%= render "employment_fields", f: emp_fields %>
+    <% end %>
+  </template>
+
+  <%= form.fields_for :employments do |emp_fields| %>
+    <%= render "employment_fields", f: emp_fields %>
+  <% end %>
+
+  <div data-nested-form-target="target"></div>
+  
+  <button type="button" data-action="nested-form#add" class="w-1/2 btn-primary">Add Employment</button>
+
+  <%= form.submit 'Save', class: 'w-1/3 btn-primary' %>
+<% end %>

@@ -1,0 +1,19 @@
+<div class="nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
+  <div class="flex items-center mb-4">
+    <%= f.label :employer, "Employer", class: 'btn-label' %>
+    <span class="pl-2 pb-3.5"><%= f.check_box :employer %></span>
+  </div>
+
+  <div>
+    <%= f.label :start, "Start Date", class: 'btn-label' %>
+    <%= f.date_select :start, required: true %>
+  </div>
+  <div>
+    <%= f.label :end, "End Date", class: 'btn-label' %>
+    <%= f.date_select :end, required: true %>
+  </div>
+  <button type="button" data-action="nested-form#remove" class="btn-remove font-small">Remove</i></button>
+  <hr class="mb-4">
+
+  <%= f.hidden_field :_destroy %>
+</div>

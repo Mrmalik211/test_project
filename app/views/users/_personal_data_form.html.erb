@@ -1,0 +1,53 @@
+<%= form_with model: user do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :first_name, 'First Name', class: 'btn-label' %>
+    <%= form.text_field :first_name, { class: 'text-field ', required: true, maxlength: 25 } %>
+  </div><hr class="mb-4">
+
+  <div>
+    <%= form.label :last_name, 'Last Name', class: 'btn-label' %>
+    <%= form.text_field :last_name, { class: 'text-field ', required: true, maxlength: 50 } %>
+  </div><hr class="mb-4">
+
+  <div>
+    <%= form.label :nickname, 'Nickname(Optional)', class: 'btn-label' %>
+    <%= form.text_field :nickname, { class: 'text-field ' } %>
+  </div><hr class="mb-4">
+
+  <div>
+    <%= form.label :email, 'Email', class: 'btn-label' %>
+    <%= form.text_field :email, { class: 'text-field ', placeholder: "name@company.com", required: true, data: {
+      person_target: "email",
+      action: "input->person#email_verification" 
+    } } %>
+    <div class="invisible btn-warning" role="alert" data-person-target="emailWarning">
+    <strong class="font-bold">Error!</strong>
+    <span class="block sm:inline">Email is not valid.</span>
+</div>
+  </div><hr class="mb-4">
+
+  <div class="invisible" data-person-target="phoneField">
+    <%= form.label :phone_number, 'Phone Number', class: 'btn-label' %>
+    <%= form.text_field :phone_number, { class: 'text-field ', placeholder: "XXX-XXX-XXXX", required: true, maxlength: 12, data: {
+      person_target: "phone",
+      action: "input->person#phone_verification" 
+    } } %>
+  </div><hr class="mb-4">
+
+  <div class="actions">
+    <%= form.submit 'Save', class: 'w-1/4 btn-primary' %>
+    <button type="button" data-action="person#close" class='w-1/4 btn-primary'>Cancel</button>
+  </div>
+<% end %>
