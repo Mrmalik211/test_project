@@ -10,9 +10,9 @@ Things you may want to cover:
 * Rails version  7.0.4
 
 * Database creation/initialization
-  Adapter  : MySql
-  Name     : test_project
-  Username : root
+  Adapter  : MySql,
+  Name     : test_project,
+  Username : root,
   Password :
 
 * Development Server
